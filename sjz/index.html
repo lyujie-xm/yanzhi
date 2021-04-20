@@ -1,0 +1,613 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>时间轴</title>
+
+<style>
+body {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+  font-size: 100%;
+  font-family: "Noto Sans", sans-serif;
+  color: #eee9dc;
+  background: #BC8F8F;     //背景颜色
+}
+
+h2 {
+  margin: 3em 0 0 0;
+  font-size: 1.5em;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* -------------------------------------
+ * timeline
+ * ------------------------------------- */
+#timeline {
+  list-style: none;
+  margin: 50px 0 30px 120px;
+  padding-left: 30px;
+  border-left: 8px solid #eee9dc;     //竖线颜色
+}
+#timeline li {
+  margin: 40px 0;
+  position: relative;
+}
+#timeline p {
+  margin: 0 0 15px;
+}
+
+.date {
+  margin-top: -10px;
+  top: 50%;
+  left: -158px;
+  font-size: 0.95em;
+  line-height: 20px;
+  position: absolute;
+}
+
+.circle {
+  margin-top: -10px;
+  top: 50%;
+  left: -44px;
+  width: 10px;
+  height: 10px;
+  background: #BC8F8F;
+  border: 5px solid #eee9dc;     
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+}
+
+.content {
+  max-height: 20px;
+  padding: 50px 20px 0;
+  border-color: transparent;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 0.5em;
+  position: relative;
+}
+.content:before, .content:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: solid transparent;
+  position: absolute;
+  pointer-events: none;
+  right: 100%;
+}
+.content:before {
+  border-right-color: inherit;
+  border-width: 20px;
+  top: 50%;
+  margin-top: -20px;
+}
+.content:after {
+  border-right-color: #BC8F8F;
+  border-width: 17px;
+  top: 50%;
+  margin-top: -17px;
+}
+.content p {
+  max-height: 0;
+  color: transparent;
+  text-align: justify;
+  word-break: break-word;
+  hyphens: auto;
+  overflow: hidden;
+}
+
+label {
+  font-size: 1.3em;
+  position: absolute;
+  z-index: 100;
+  cursor: pointer;
+  top: 20px;
+  transition: transform 0.2s linear;
+}
+
+.radio {
+  display: none;
+}
+
+.radio:checked + .relative label {
+  cursor: auto;
+  transform: translateX(42px);
+}
+.radio:checked + .relative .circle {
+  background: #f98262;
+}
+.radio:checked ~ .content {
+  max-height: 180px;
+  border-color: #eee9dc;
+  margin-right: 20px;
+  transform: translateX(20px);
+  transition: max-height 0.4s linear, border-color 0.5s linear, transform 0.2s linear;
+}
+.radio:checked ~ .content p {
+  max-height: 200px;
+  color: #eee9dc;
+  transition: color 0.3s linear 0.3s;
+}
+
+/* -------------------------------------
+ * mobile phones (vertical version only)
+ * ------------------------------------- */
+@media screen and (max-width: 767px) {
+  #timeline {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
+  }
+  #timeline li {
+    margin: 50px 0;
+  }
+
+  label {
+    width: 85%;
+    font-size: 1.1em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    transform: translateX(18px);
+  }
+
+  .content {
+    padding-top: 45px;
+    border-color: #eee9dc;
+  }
+  .content:before, .content:after {
+    border: solid transparent;
+    bottom: 100%;
+  }
+  .content:before {
+    border-bottom-color: inherit;
+    border-width: 17px;
+    top: -16px;
+    left: 50px;
+    margin-left: -17px;
+  }
+  .content:after {
+    border-bottom-color: #BC8F8F;
+    border-width: 20px;
+    top: -20px;
+    left: 50px;
+    margin-left: -20px;
+  }
+  .content p {
+    font-size: 0.9em;
+    line-height: 1.4;
+  }
+
+  .circle, .date {
+    display: none;
+  }
+}
+</style>
+
+</head>
+<body>
+<p style="font-size:25px">于千万人之中，与你遇见<br/>于千万年之中，在时间无涯的荒野里<br/>没有早一步，也没有晚一步<br/>我们，刚巧遇上</p>
+<p> </p>
+<ul id='timeline'>
+<li class='work'>
+    <input class='radio' id='work29' name='works' type='radio' checked>
+    <div class="relative">
+      <label for='work29'>电影《大侦探皮卡丘》</label>
+      <span class='date'>2019.5.11</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	 文艺金逸
+	 <p>
+	 14:40
+	 <p>
+	 13排13.14
+      </p>
+    </div>
+  </li>
+<li class='work'>
+    <input class='radio' id='work28' name='works' type='radio'>
+    <div class="relative">
+      <label for='work28'>凌晨</label>
+      <span class='date'>2019.4.29</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	 时间总是在不经意悄悄溜走  |  而你却是时间偷不走的爱人
+	 <p>
+	 01:36
+      </p>
+    </div>
+  </li>
+<li class='work'>
+    <input class='radio' id='work27' name='works' type='radio'>
+    <div class="relative">
+      <label for='work27'>电影《复仇者联盟4》</label>
+      <span class='date'>2019.4.27</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	 明发金逸IMAX
+	 <p>
+	 01:40
+      </p>
+    </div>
+  </li>
+<li class='work'>
+    <input class='radio' id='work26' name='works' type='radio'>
+    <div class="relative">
+      <label for='work26'>电影《雷霆沙赞》</label>
+      <span class='date'>2019.4.6</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	 集美万达
+	 <p>
+	 11:30
+      </p>
+    </div>
+  </li>
+<li class='work'>
+    <input class='radio' id='work25' name='works' type='radio'>
+    <div class="relative">
+      <label for='work25'>电影《惊奇队长》</label>
+      <span class='date'>2019.3.5</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	 名汇金逸
+	 <p>
+	 19:37
+      </p>
+    </div>
+  </li>
+<li class='work'>
+    <input class='radio' id='work24' name='works' type='radio'>
+    <div class="relative">
+      <label for='work24'>回厦门</label>
+      <span class='date'>2019.2.15</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  梅山
+	  <p>
+	  大巴14:20
+      </p>
+    </div>
+  </li>
+<li class='work'>
+    <input class='radio' id='work23' name='works' type='radio'>
+    <div class="relative">
+      <label for='work23'>回南安*放烟花</label>
+      <span class='date'>2019.2.14</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  时光静好，与君语；细水流年，与君同；繁华落尽，与君老。
+	  <p>
+	  枋湖 大巴13:30
+      </p>
+    </div>
+  </li>
+  <li class='work'>
+    <input class='radio' id='work22' name='works' type='radio'>
+    <div class="relative">
+      <label for='work22'>开了最久的一次长途</label>
+      <span class='date'>2019.1.27</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  1.27回南安
+	  <p>
+	  1.28跑德化*回厦门
+      </p>
+    </div>
+  </li>
+<li class='work'>
+    <input class='radio' id='work21' name='works' type='radio'>
+    <div class="relative">
+      <label for='work21'>圣诞快乐呀</label>
+      <span class='date'>2018.12.25</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  时光飞逝，爱你如初！
+      </p>
+    </div>
+  </li>
+<li class='work'>
+    <input class='radio' id='work20' name='works' type='radio'>
+    <div class="relative">
+      <label for='work20'>电影《海王》</label>
+      <span class='date'>2018.12.12</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  文艺金逸
+	  <p>
+	  12:12
+      </p>
+    </div>
+  </li>
+<li class='work'>
+    <input class='radio' id='work19' name='works' type='radio'>
+    <div class="relative">
+      <label for='work19'>第2个100天</label>
+      <span class='date'>2018.11.26</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  和你在一起的所有时光都灿烂耀眼，因为天气好，因为天气不好，因为天气刚刚好，所有的日子都很好
+      </p>
+    </div>
+  </li>
+<li class='work'>
+    <input class='radio' id='work18' name='works' type='radio'>
+    <div class="relative">
+      <label for='work18'>电影《毒液》</label>
+      <span class='date'>2018.11.10</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  文艺金逸
+	  <p>
+	  17:36
+      </p>
+    </div>
+  </li>
+  
+<li class='work'>
+    <input class='radio' id='work17' name='works' type='radio'>
+    <div class="relative">
+      <label for='work17'>电影《滴答屋》</label>
+      <span class='date'>2018.11.01</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  名汇金逸 
+	  <p>
+	  18:25 
+	  <p>
+	  8排8.7
+      </p>
+    </div>
+  </li>
+<li class='work'>
+    <input class='radio' id='work16' name='works' type='radio'>
+    <div class="relative">
+      <label for='work16'>电影《铁血战士》</label>
+      <span class='date'>2018.10.29</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  名汇金逸
+	  <p>19:20
+	  <p>
+	  8排8.7
+      </p>
+    </div>
+  </li>
+  <li class='work'>
+    <input class='radio' id='work15' name='works' type='radio'>
+    <div class="relative">
+      <label for='work15'>宝宝生日：东山岛</label>
+      <span class='date'>2018.09.15</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>	  
+	  2018年9月15日(18:17动车)-2018年9月17日(17:45动车) 住‘东山曼海居行馆’
+	  <p>
+	  2018年9月17日:泊捷酒店 酒店真的烂，黑名单黑名单
+      </p>
+    </div>
+  </li>
+<li class='work'>
+    <input class='radio' id='work14' name='works' type='radio'>
+    <div class="relative">
+      <label for='work14'>情侣座</label>
+      <span class='date'>2018.09.02</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  思明影院《碟中谍6》
+      </p>
+    </div>
+  </li>
+<li class='work'>
+    <input class='radio' id='work13' name='works' type='radio'>
+    <div class="relative">
+      <label for='work13'>电影《新乌龙院》</label>
+      <span class='date'>2018.08.17</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  旺角金逸
+      </p>
+    </div>
+  </li>
+<li class='work'>
+    <input class='radio' id='work12' name='works' type='radio'>
+    <div class="relative">
+      <label for='work12'>真的不好看啊</label>
+      <span class='date'>2018.08.11</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  名汇金逸《爱情公寓》
+      </p>
+    </div>
+  </li>
+<li class='work'>
+    <input class='radio' id='work11' name='works' type='radio'>
+    <div class="relative">
+      <label for='work11'>电影《风语咒》</label>
+      <span class='date'>2018.08.05</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  名汇金逸
+      </p>
+    </div>
+  </li>
+<li class='work'>
+    <input class='radio' id='work10' name='works' type='radio'>
+    <div class="relative">
+      <label for='work10'>电影《我不是药神》</label>
+      <span class='date'>2018.07.03</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	 明发金逸
+      </p>
+    </div>
+  </li>
+<li class='work'>
+    <input class='radio' id='work9' name='works' type='radio'>
+    <div class="relative">
+      <label for='work9'>中华城</label>
+      <span class='date'>2018.06.08</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  真的不知道去哪，磐基博纳《幸福马上来》
+      </p>
+    </div>
+  </li>
+<li class='work'>
+    <input class='radio' id='work8' name='works' type='radio'>
+    <div class="relative">
+      <label for='work8'>儿童节呀</label>
+      <span class='date'>2018.06.01</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  SM万达《哆啦A梦》首映，外面住哟：怡海阁花园酒店怡海阁花园酒店
+      </p>
+    </div>
+  </li>
+<li class='work'>
+    <input class='radio' id='work7' name='works' type='radio'>
+    <div class="relative">
+      <label for='work7'>电影《寂静之地》</label>
+      <span class='date'>2018.05.25</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  华彩中兴
+      </p>
+    </div>
+  </li>
+  <li class='work'>
+    <input class='radio' id='work6' name='works' type='radio'>
+    <div class="relative">
+      <label for='work6'>电影《超时空同居》</label>
+      <span class='date'>2018.05.21</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  中影星美
+      </p>
+    </div>
+  </li>
+  <li class='work'>
+    <input class='radio' id='work5' name='works' type='radio'>
+    <div class="relative">
+      <label for='work5'>出去浪</label>
+      <span class='date'>2018.05.16</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  湿地公园、曾厝垵
+      </p>
+    </div>
+  </li>
+  <li class='work'>
+    <input class='radio' id='work4' name='works' type='radio'>
+    <div class="relative">
+      <label for='work4'>海山路上</label>
+      <span class='date'>2018.05.14</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  抱抱接吻
+      </p>
+    </div>
+  </li>
+  <li class='work'>
+    <input class='radio' id='work3' name='works' type='radio'>
+    <div class="relative">
+      <label for='work3'>一起看电影呀，看的什么呢！！(#^.^#)</label>
+      <span class='date'>2018.05.13</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  金逸文艺《复仇者联盟3》
+      </p>
+    </div>
+  </li>
+  <li class='work'>
+    <input class='radio' id='work2' name='works' type='radio'>
+    <div class="relative">
+      <label for='work2'>厦大四果汤</label>
+      <span class='date'>2018.05.11</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  中山公园，南中广场咏蛙
+      </p>
+    </div>
+  </li>
+  <li class='work'>
+    <input class='radio' id='work1' name='works' type='radio'>
+    <div class="relative">
+      <label for='work1'>我们牵手啦</label>
+      <span class='date'>2018.05.10</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+	  有敬、芸台书舍、送回家
+      </p>
+    </div>
+  </li>
+</ul>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p><a href="http://潘燕治.我爱你/" target="_blank">  </a></p>
+</div>
+</body>
+</html>
+
